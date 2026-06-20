@@ -32,6 +32,13 @@ models/*
 submissions/*.csv
 !submissions/sample_submission.csv
 
+# Experiment outputs / predictions / reports
+outputs/
+reports/
+*.cbm
+test_pred_*.csv
+*_oof_predictions.csv
+
 # OS / IDE
 .DS_Store
 Thumbs.db
