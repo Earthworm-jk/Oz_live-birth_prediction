@@ -13,7 +13,7 @@
 | `literature_gated_extension` | CatBoost | 문헌 기반 frozen/oocyte/PGT/process extension | current all_evidence에 문헌 feature 추가 | 0.740456-0.740584 | - | 문헌 기반 feature 확장은 기존 모델을 넘지 못함 |
 | `team_discovered_branch_features` | CatBoost | history trajectory, frozen-thaw, donor/own, DI branch, cause-history | 팀원 설계 기반 branch feature family 비교 | best 0.740660 | - | history 계열만 미세 개선. 나머지는 global 성능 개선 부족 |
 | `history_safe_compact_plus_rates` | CatBoost | all_evidence + compact history trajectory + prior rate features | depth=7, lr=0.045, l2=6 | 0.740754 | - | history feature가 기존 currentCB 대비 +0.000104 개선 |
-| `history_cb_controlled_blend_040_020` | Ensemble | currentCB + historyCB + LGBM | 0.4 currentCB + 0.4 historyCB + 0.2 LGBM | 0.740923 | 0.74248 | 현재 유지 중인 best 제출 후보 |
+| `history_cb_controlled_blend_040_020` | Ensemble | currentCB + historyCB + LGBM | 0.4 currentCB + 0.4 historyCB + 0.2 LGBM | 0.740923 | 0.74248 | 10fold conservative average 이전 기준 제출 blend |
 | `constrained_oof_blend_optimizer` | Ensemble | 기존 OOF 모델 weight grid | 제한된 OOF-only weight search | 0.740939 | - | base 대비 +0.000016. 개선 폭이 작아 제출 보류 |
 | `history_cb_local_tuning` | CatBoost | history_safe_compact_plus_rate feature set 고정 | best: depth=7, lr=0.045, l2=8, random_strength=2 | 0.740797 | - | historyCB 대비 +0.000043. 튜닝 폭 확인 |
 | `embedding_mlp_diversity` | Embedding MLP | all_evidence + history feature, categorical embedding + numeric scaling | high dropout MLP | 0.738889 | - | 단일 모델은 낮지만 tree 모델과 다른 ranking source 확인 |
@@ -43,3 +43,4 @@
 - 출력 경로: `/data/submission.csv`
 - 검증 결과: 최종 제출 산식 재계산값과 기존 `candidate_10fold_conservative_avg.csv`의 최대 절대 차이 `1.110e-16`
 - 실제 저장 파일: 기존 최종 제출물과 바이트 단위 일치 확인
+- 포함 소스: 최종 제출 흐름에 필요한 `pipeline_src/src` 파일만 선별 포함
